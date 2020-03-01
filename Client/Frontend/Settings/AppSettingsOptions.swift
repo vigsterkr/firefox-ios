@@ -758,7 +758,6 @@ class SendAnonymousUsageDataSetting: BoolSetting {
             attributedStatusText: statusText,
             settingDidChange: {
                 AdjustIntegration.setEnabled($0)
-                LeanPlumClient.shared.set(attributes: [LPAttributeKey.telemetryOptIn: $0])
                 LeanPlumClient.shared.set(enabled: $0)
             }
         )

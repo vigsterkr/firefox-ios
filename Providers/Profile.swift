@@ -17,7 +17,6 @@ import SwiftKeychainWrapper
 // Import these dependencies ONLY for the main `Client` application target.
 #if MOZ_TARGET_CLIENT
     import SwiftyJSON
-    import SyncTelemetry
 #endif
 
 private let log = Logger.syncLogger
@@ -743,15 +742,7 @@ open class BrowserProfile: Profile {
             syncDisplayState = SyncStatusResolver(engineResults: result.engineResults).resolveResults()
 
             #if MOZ_TARGET_CLIENT
-                if let account = profile.account, canSendUsageData() {
-                    SyncPing.from(result: result,
-                                  account: account,
-                                  remoteClientsAndTabs: profile.remoteClientsAndTabs,
-                                  prefs: prefs,
-                                  why: .schedule) >>== { SyncTelemetry.send(ping: $0, docType: .sync) }
-                } else {
-                    log.debug("Profile isn't sending usage data. Not sending sync status event.")
-                }
+                log.debug("Profile isn't sending usage data. Not sending sync status event.")
             #endif
 
             // Dont notify if we are performing a sync in the background. This prevents more db access from happening

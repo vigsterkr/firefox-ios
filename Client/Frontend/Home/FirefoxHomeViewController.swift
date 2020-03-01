@@ -7,7 +7,6 @@ import UIKit
 import Storage
 import SDWebImage
 import XCGLogger
-import SyncTelemetry
 import SnapKit
 
 private let log = Logger.browserLogger
@@ -800,7 +799,6 @@ extension FirefoxHomeViewController: HomePanelContextMenu {
                     site.setBookmarked(false)
                 }
 
-                UnifiedTelemetry.recordEvent(category: .action, method: .delete, object: .bookmark, value: .activityStream)
             })
         } else {
             bookmarkAction = PhotonActionSheetItem(title: Strings.BookmarkContextMenuTitle, iconString: "action_bookmark", handler: { _, _ in
@@ -817,7 +815,6 @@ extension FirefoxHomeViewController: HomePanelContextMenu {
                 site.setBookmarked(true)
                 self.profile.panelDataObservers.activityStream.refreshIfNeeded(forceTopSites: true)
                 LeanPlumClient.shared.track(event: .savedBookmark)
-                UnifiedTelemetry.recordEvent(category: .action, method: .add, object: .bookmark, value: .activityStream)
             })
         }
 

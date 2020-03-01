@@ -77,7 +77,6 @@ struct LPAttributeKey {
     static let signedInSync = "Signed In Sync"
     static let mailtoIsDefault = "Mailto Is Default"
     static let pocketInstalled = "Pocket Installed"
-    static let telemetryOptIn = "Telemetry Opt In"
     static let fxaAccountVerified = "FxA account is verified"
     static let fxaDeviceCount = "Number of devices in FxA account"
 }

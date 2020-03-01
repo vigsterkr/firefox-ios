@@ -149,11 +149,6 @@ class FxAContentViewController: SettingsContentViewController, WKScriptMessageHa
             title: Strings.FxARemoveAccountButton,
             style: .destructive
             ) { (action) in
-                UnifiedTelemetry.recordEvent(
-                    category: .action,
-                    method: .tap,
-                    object: .removeUnVerifiedAccountButton
-                )
                 self.onDeleteAccount()
         })
         navigationController?.present(alertController, animated: true, completion: nil)

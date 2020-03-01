@@ -62,7 +62,6 @@ class DisconnectSetting: Setting {
         alertController.addAction(
             UIAlertAction(title: Strings.SettingsDisconnectDestructiveAction, style: .destructive) { (action) in
                 FxALoginHelper.sharedInstance.applicationDidDisconnect(UIApplication.shared)
-                LeanPlumClient.shared.set(attributes: [LPAttributeKey.signedInSync: self.profile.hasAccount()])
 
                 // If there is more than one view controller in the navigation controller, we can pop.
                 // Otherwise, assume that we got here directly from the App Menu and dismiss the VC.

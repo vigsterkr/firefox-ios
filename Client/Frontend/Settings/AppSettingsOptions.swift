@@ -758,7 +758,6 @@ class SendAnonymousUsageDataSetting: BoolSetting {
             attributedStatusText: statusText,
             settingDidChange: {
                 AdjustIntegration.setEnabled($0)
-                LeanPlumClient.shared.set(enabled: $0)
             }
         )
     }
@@ -845,7 +844,6 @@ class LoginsSetting: Setting {
         guard let navController = navigationController else { return }
         LoginListViewController.create(authenticateInNavigationController: navController, profile: profile, settingsDelegate: BrowserViewController.foregroundBVC()).uponQueue(.main) { loginsVC in
             guard let loginsVC = loginsVC else { return }
-            LeanPlumClient.shared.track(event: .openedLogins)
             navController.pushViewController(loginsVC, animated: true)
         }
     }

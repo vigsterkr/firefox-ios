@@ -174,7 +174,6 @@ class FxAContentViewController: SettingsContentViewController, WKScriptMessageHa
     // The user has deleted their Firefox Account. Disconnect them!
     fileprivate func onDeleteAccount() {
         FxALoginHelper.sharedInstance.applicationDidDisconnect(UIApplication.shared)
-        LeanPlumClient.shared.set(attributes: [LPAttributeKey.signedInSync: profile.hasAccount()])
         dismiss(animated: true)
     }
 
@@ -187,12 +186,6 @@ class FxAContentViewController: SettingsContentViewController, WKScriptMessageHa
         helper.delegate = self
         helper.application(app, didReceiveAccountJSON: data)
 
-        if let engines = data["offeredSyncEngines"].array, engines.count > 0 {
-            LeanPlumClient.shared.track(event: .signsUpFxa)
-        } else {
-            LeanPlumClient.shared.track(event: .signsInFxa)
-        }
-        LeanPlumClient.shared.set(attributes: [LPAttributeKey.signedInSync: true])
     }
 
     @objc fileprivate func userDidVerify(_ notification: Notification) {
@@ -205,7 +198,6 @@ class FxAContentViewController: SettingsContentViewController, WKScriptMessageHa
         // we only Notify via the FxALoginStateMachine.
         let flags = FxALoginFlags(pushEnabled: account.pushRegistration != nil,
                                   verified: true)
-        LeanPlumClient.shared.set(attributes: [LPAttributeKey.signedInSync: true])
         DispatchQueue.main.async {
             self.delegate?.contentViewControllerDidSignIn(self, withFlags: flags)
         }

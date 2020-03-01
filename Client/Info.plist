@@ -8,12 +8,6 @@
 	<string>$(ADJUST_ENVIRONMENT)</string>
 	<key>MozDevelopmentTeam</key>
 	<string>$(DEVELOPMENT_TEAM)</string>
-	<key>LeanplumAppId</key>
-	<string></string>
-	<key>LeanplumProductionKey</key>
-	<string></string>
-	<key>LeanplumDevelopmentKey</key>
-	<string></string>
 	<key>AppIdentifierPrefix</key>
 	<string>$(APP_IDENTIFIER_PREFIX)</string>
 	<key>PocketEnvironmentAPIKey</key>

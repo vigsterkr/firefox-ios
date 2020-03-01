@@ -146,7 +146,6 @@ enum NavigationPath {
         } else {
             bvc.openBlankNewTab(focusLocationField: true, isPrivate: isPrivate)
         }
-        LeanPlumClient.shared.track(event: .openedNewTab, withParameters: ["Source": "External App or Extension"])
     }
 
     private static func handleText(text: String, with bvc: BrowserViewController) {

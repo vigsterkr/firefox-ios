@@ -221,13 +221,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIViewControllerRestorati
         // button will be in the incorrect position and overlap with the input text. Not clear if
         // that is an iOS bug or not.
         AutocompleteTextField.appearance().semanticContentAttribute = .forceLeftToRight
-        // Leanplum usersearch variable setup for onboarding research
-        _ = OnboardingUserResearch()
-        // Leanplum setup
-        if let profile = self.profile, LeanPlumClient.shouldEnable(profile: profile) {
-            LeanPlumClient.shared.setup(profile: profile)
-            LeanPlumClient.shared.set(enabled: true)
-        }
 
         if #available(iOS 13.0, *) {
             BGTaskScheduler.shared.register(forTaskWithIdentifier: "org.mozilla.ios.sync.part1", using: DispatchQueue.global()) { task in

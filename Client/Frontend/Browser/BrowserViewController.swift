@@ -1071,7 +1071,6 @@ class BrowserViewController: UIViewController {
         }
 
         present(controller, animated: true, completion: nil)
-        LeanPlumClient.shared.track(event: .userSharedWebpage)
     }
 
     @objc fileprivate func openSettings() {
@@ -1291,7 +1290,6 @@ extension BrowserViewController: URLBarDelegate {
         if let tab = self.tabManager.selectedTab {
             let trackingProtectionMenu = self.getTrackingSubMenu(for: tab)
             let title = String.localizedStringWithFormat(Strings.TPPageMenuTitle, tab.url?.host ?? "")
-            LeanPlumClient.shared.track(event: .trackingProtectionMenu)
             self.presentSheetWith(title: title, actions: trackingProtectionMenu, on: self, from: urlBar)
         }
     }
@@ -1313,7 +1311,6 @@ extension BrowserViewController: URLBarDelegate {
         switch readerMode.state {
         case .available:
             enableReaderMode()
-            LeanPlumClient.shared.track(event: .useReaderView)
         case .active:
             disableReaderMode()
         case .unavailable:
@@ -1467,8 +1464,6 @@ extension BrowserViewController: URLBarDelegate {
 
             showFirefoxHome(inline: false)
         }
-
-        LeanPlumClient.shared.track(event: .interactWithURLBar)
     }
 
     func urlBarDidLeaveOverlayMode(_ urlBar: URLBarView) {
@@ -2081,7 +2076,6 @@ extension BrowserViewController: ContextMenuHelperDelegate {
 
             let addTab = { (rURL: URL, isPrivate: Bool) in
                     let tab = self.tabManager.addTab(URLRequest(url: rURL as URL), afterTab: currentTab, isPrivate: isPrivate)
-                    LeanPlumClient.shared.track(event: .openedNewTab, withParameters: ["Source": "Long Press Context Menu"])
                     guard !self.topTabsVisible else {
                         return
                     }
@@ -2255,9 +2249,6 @@ extension BrowserViewController: ContextMenuHelperDelegate {
 
 extension BrowserViewController {
     @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
-        if error == nil {
-            LeanPlumClient.shared.track(event: .saveImage)
-        }
     }
     
     func presentThemedViewController(navItemLocation: NavigationItemLocation, navItemText: NavigationItemText, vcBeingPresented: UIViewController) {

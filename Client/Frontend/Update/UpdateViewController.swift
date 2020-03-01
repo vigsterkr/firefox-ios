@@ -6,7 +6,6 @@ import Foundation
 import UIKit
 import SnapKit
 import Shared
-import Leanplum
 
 // Update view UX constants
 struct UpdateViewControllerUX {
@@ -211,12 +210,10 @@ class UpdateViewController: UIViewController {
     // Button Actions
     @objc private func dismissAnimated() {
         self.dismiss(animated: true, completion: nil)
-        LeanPlumClient.shared.track(event: .dismissedUpdateCoverSheet)
     }
     
     @objc private func startBrowsing() {
         viewModel.startBrowsing?()
-        LeanPlumClient.shared.track(event: .dismissUpdateCoverSheetAndStartBrowsing)
     }
 }
 

@@ -220,17 +220,14 @@ class IntroViewController: UIViewController {
 
     @objc func startBrowsing() {
         delegate?.introViewControllerDidFinish(self, showLoginFlow: nil)
-        LeanPlumClient.shared.track(event: .dismissedOnboarding, withParameters: ["dismissedOnSlide": String(currentPage)])
     }
 
     @objc func showEmailLoginFlow() {
         delegate?.introViewControllerDidFinish(self, showLoginFlow: .emailFlow)
-        LeanPlumClient.shared.track(event: .dismissedOnboardingShowLogin, withParameters: ["dismissedOnSlide": String(currentPage)])
         }
 
     @objc func showSignUpFlow() {
         delegate?.introViewControllerDidFinish(self, showLoginFlow: .signUpFlow)
-        LeanPlumClient.shared.track(event: .dismissedOnboardingShowSignUp, withParameters: ["dismissedOnSlide": String(currentPage)])
         }
 }
 

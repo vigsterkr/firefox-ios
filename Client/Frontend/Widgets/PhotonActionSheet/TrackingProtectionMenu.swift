@@ -164,7 +164,7 @@ extension PhotonActionSheetProtocol {
         }
 
         var addToWhitelist = PhotonActionSheetItem(title: Strings.ETPOn, isEnabled: !isWhitelisted, accessory: .Switch) { _, cell in
-            LeanPlumClient.shared.track(event: .trackingProtectionWhiteList)
+            // TODO
             ContentBlocker.shared.whitelist(enable: tab.contentBlocker?.status != .Whitelisted, url: currentURL) {
                 tab.reload()
                 // trigger a call to customRender
